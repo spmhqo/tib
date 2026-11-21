@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Translate in Bengali</title>
+  <link rel="icon" href="spm.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&family=Noto+Sans+Bengali:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  
+  <style>
+    :root {
+      --bg-gradient-start: #020617;
+      --bg-gradient-end: #0f172a;
+      --card-bg: rgba(30, 41, 59, 0.4);
+      --card-border: rgba(255, 255, 255, 0.08);
+      --text-primary: #f8fafc;
+      --text-secondary: #94a3b8;
+      --accent-primary: #22d3ee;
+      --accent-hover: #67e8f9;
+      --accent-success: #10b981;
+      --accent-danger: #f43f5e;
+      --code-bg: rgba(0, 0, 0, 0.3);
+      --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+      background: fixed linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+      color: var(--text-primary);
+      line-height: 1.6;
+      padding: 60px 20px;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .container {
+      max-width: 900px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #fff;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+
+    .prompt-workflow {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+
+    .step-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 24px;
+      padding: 35px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(12px);
+    }
+
+    .step-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .step-label {
+      font-weight: 800;
+      font-size: 0.8rem;
+      background: var(--accent-primary);
+      color: #020617;
+      padding: 5px 16px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .clear-btn {
+      background: transparent;
+      border: 1px solid var(--accent-danger);
+      color: var(--accent-danger);
+      padding: 6px 14px;
+      border-radius: 8px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      cursor: pointer;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+
+    .clear-btn:hover {
+      background: var(--accent-danger);
+      color: white;
+    }
+
+    label {
+      display: block;
+      color: var(--accent-primary);
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 12px;
+      letter-spacing: 0.03em;
+    }
+
+    .dynamic-input {
+      width: 100%;
+      background: var(--code-bg);
+      border: 1px solid var(--card-border);
+      padding: 16px;
+      border-radius: 12px;
+      color: #fff;
+      font-family: 'Inter', 'Noto Sans Bengali', sans-serif;
+      font-size: 1rem;
+      line-height: 1.5;
+      outline: none;
+      resize: vertical;
+      min-height: 110px;
+      transition: border-color 0.3s;
+    }
+
+    .dynamic-input:focus {
+      border-color: var(--accent-primary);
+    }
+
+    .prompt-content {
+      background: var(--code-bg);
+      padding: 25px;
+      border-radius: 12px;
+      font-family: 'Source Code Pro', 'Noto Sans Bengali', monospace;
+      font-size: 0.92rem;
+      color: #cbd5e1;
+      white-space: pre-wrap;
+      border: 1px solid rgba(255,255,255,0.05);
+      margin-bottom: 22px;
+      line-height: 1.6;
+      word-break: break-word;
+      max-height: 520px;
+      overflow-y: auto;
+    }
+
+    .prompt-content::-webkit-scrollbar { width: 8px; }
+    .prompt-content::-webkit-scrollbar-track { background: rgba(0,0,0,0.2); }
+    .prompt-content::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 4px; }
+
+    .btn {
+      padding: 14px 32px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.2s;
+      width: 100%;
+      text-decoration: none;
+      border: none;
+    }
+
+    .copy-btn {
+      background: rgba(34, 211, 238, 0.1);
+      color: var(--accent-primary);
+      border: 1px solid var(--accent-primary);
+    }
+
+    .copy-btn:hover {
+      background: var(--accent-primary);
+      color: #020617;
+    }
+
+    .copy-btn.copied {
+      background: var(--accent-success);
+      border-color: var(--accent-success);
+      color: white;
+    }
+
+    .footer {
+      margin-top: 80px;
+      text-align: center;
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--card-border);
+      padding-top: 40px;
+      width: 100%;
+      padding-bottom: 40px;
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 2rem; }
+      .step-card { padding: 22px; }
+      .prompt-content { font-size: 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <h1>Translate in Bengali</h1>
+    </header>
+
+    <div class="prompt-workflow">
+      
+      <!-- Multiline Input Card 1 -->
+      <div class="step-card">
+        <div class="step-header">
+          <span class="step-label">Input Data</span>
+          <button class="clear-btn" onclick="resetInput('inputText')">Reset</button>
+        </div>
+        <label for="inputText">[Insert Text Here]</label>
+        <textarea id="inputText" class="dynamic-input" placeholder="Type or paste the text here..." oninput="updatePrompts()"></textarea>
+      </div>
+
+      <!-- Prompt Result Card -->
+      <div id="promptsContainer">
+        <!-- Prompt injected by JavaScript -->
+      </div>
+
+    </div>
+
+    <footer class="footer">
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear())</script> Siva Prasad Mukherjee. All Rights Reserved.</p>
+    </footer>
+  </div>
+
+  <script>
+    const templates = [
+      {
+        id: 1,
+        text: `Translate to the following TEXT in Bengali (India).
+
+Follow all the instructions below strictly. These language and writing-style requirements apply to your entire response.
+
+ভাষার ধরন হবে কলকাতার রোজকার ঘরোয়া কথাবার্তা বা আড্ডার মতো সহজ, স্বাভাবিক ও আন্তরিক। মনে হবে, দুজনের মধ্যে বন্ধুত্বপূর্ণ আলোচনা চলছে, যেখানে একজন আরেকজনকে সহজভাবে বুঝিয়ে বলছে কী করা উচিত, কেন করা উচিত এবং কীভাবে করতে হবে। লেখার মধ্যে যেন সেই সহজবোধ্যতা, আন্তরিকতা ও স্বাভাবিক কথোপকথনের অনুভূতি থাকে।
+
+OTHER MANDATORY RULES:
+
+- ভাষা: শুধুমাত্র ভারতীয় বাংলা ব্যবহার করবেন। একান্ত প্রয়োজন না হলে কোনও ইংরেজি শব্দ ব্যবহার করবেন না। যেখানে স্বাভাবিক বাংলা শব্দ রয়েছে, সেখানে ইংরেজি শব্দের ব্যবহার এড়িয়ে চলবেন।
+- সম্বোধন: পাঠককে সবসময় "আপনি" বলে সম্বোধন করবেন। কখনও "তুমি" বা "তুই" ব্যবহার করবেন না।
+- কথার ধরন: আধুনিক কলকাতার রোজকার কথাবার্তার মতো সহজ, স্বাভাবিক ও আন্তরিক বাংলা ব্যবহার করবেন।
+- পাঠকের বয়স: ভাষা ও বোঝানোর ধরন ১৮ বছর বয়সী পাঠকের উপযোগী হবে। বিষয় যতই জটিল হোক, বোঝানোর ভাষা হবে সহজ ও পরিষ্কার।
+- লেখার ভঙ্গি: অযথা গম্ভীর, সাহিত্যনির্ভর, বইয়ের ভাষার মতো বা অতিরিক্ত আনুষ্ঠানিক বাংলা ব্যবহার করবেন না।
+- স্বাভাবিকতা: এমনভাবে লিখবেন যেন একজন পরিচিত মানুষ আরেকজনকে পাশে বসিয়ে সহজভাবে সবকিছু বুঝিয়ে দিচ্ছে।
+- আন্তরিকতা: ভাষা হবে বন্ধুত্বপূর্ণ, উষ্ণ, সহজবোধ্য ও স্বতঃস্ফূর্ত। তবে অযথা অতিরিক্ত ঘনিষ্ঠ বা কৃত্রিমভাবে বন্ধুত্বপূর্ণ হওয়া চলবে না।
+- আঞ্চলিক ব্যবহার: বাংলাদেশের বাংলা শব্দ, বানান ও কথার ধরন এড়িয়ে চলবেন। পশ্চিমবঙ্গের, বিশেষ করে কলকাতায় প্রচলিত স্বাভাবিক বাংলা ব্যবহার করবেন।
+- শিরোনাম ও উপশিরোনাম: মূল প্রম্পটে দেওয়া থাকুক বা আপনার উত্তরে নতুন করে তৈরি করা হোক, সমস্ত শিরোনাম, উপশিরোনাম এবং প্রতিটি বিভাগের নাম অবশ্যই উপরে উল্লেখ করা ভাষা ও লেখার ধরন মেনে স্বাভাবিক, সহজ ও আন্তরিক ভারতীয় বাংলায় লিখবেন। কোনও শিরোনাম বা উপশিরোনাম ইংরেজিতে রাখবেন না।
+
+TEXT:
+
+[Insert Text Here]`
+      }
+    ];
+
+    function createCards() {
+      const container = document.getElementById('promptsContainer');
+      container.innerHTML = '';
+      templates.forEach(t => {
+        const card = document.createElement('div');
+        card.className = 'step-card';
+        
+        const header = document.createElement('div');
+        header.className = 'step-header';
+        
+        const label = document.createElement('span');
+        label.className = 'step-label';
+        label.textContent = `Prompt #${t.id}`;
+        header.appendChild(label);
+        
+        const content = document.createElement('div');
+        content.className = 'prompt-content';
+        content.id = `p${t.id}`;
+        
+        const btn = document.createElement('button');
+        btn.className = 'btn copy-btn';
+        btn.onclick = function() { copyText(`p${t.id}`, this); };
+        const span = document.createElement('span');
+        span.textContent = `Copy Prompt #${t.id}`;
+        btn.appendChild(span);
+        
+        card.appendChild(header);
+        card.appendChild(content);
+        card.appendChild(btn);
+        container.appendChild(card);
+      });
+    }
+
+    function updatePrompts() {
+      const textVal = document.getElementById('inputText').value.trim() || "[Insert Text Here]";
+
+      templates.forEach(t => {
+        const updatedText = t.text.split('[Insert Text Here]').join(textVal);
+        document.getElementById(`p${t.id}`).innerText = updatedText;
+      });
+    }
+
+    function resetInput(fieldId) {
+      document.getElementById(fieldId).value = "";
+      updatePrompts();
+    }
+
+    function copyText(id, btn) {
+      const text = document.getElementById(id).innerText;
+      navigator.clipboard.writeText(text).then(() => {
+        const originalText = btn.innerHTML;
+        btn.innerHTML = `<span>Copied to Clipboard!</span>`;
+        btn.classList.add('copied');
+        
+        setTimeout(() => {
+          btn.innerHTML = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+      });
+    }
+
+    // Initialize on page load
+    window.onload = () => {
+      createCards();
+      updatePrompts();
+    };
+  </script>
+</body>
+</html>
